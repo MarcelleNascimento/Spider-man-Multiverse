@@ -1,15 +1,11 @@
 console.log("Script carregado");
 
-/* =========================
-   HOME - CARDS
-========================= */
-
-function handleCardMouseEnter() {
+function handleMouseEnter() {
     this.classList.add('s-card--hovered');
     document.body.id = `${this.id}-hovered`;
 }
 
-function handleCardMouseLeave() {
+function handleMouseLeave() {
     this.classList.remove('s-card--hovered');
     document.body.id = '';
 }
@@ -19,35 +15,12 @@ function addEventListenersToCards() {
 
     for (let i = 0; i < cardElements.length; i++) {
         const card = cardElements[i];
-        card.addEventListener('mouseenter', handleCardMouseEnter);
-        card.addEventListener('mouseleave', handleCardMouseLeave);
+        card.addEventListener('mouseenter', handleMouseEnter);
+        card.addEventListener('mouseleave', handleMouseLeave);
     }
 }
 
-/* =========================
-   LINHA DO TEMPO
-========================= */
-
-function handleItemMouseEnter() {
-  document.body.className = `${this.id}-hovered`;
-}
-
-function handleItemMouseLeave() {
-  document.body.className = '';
-}
-
-function addEventListenersToItems() {
-  const items = document.querySelectorAll('.item');
-
-  items.forEach(item => {
-    item.addEventListener('mouseenter', handleItemMouseEnter);
-    item.addEventListener('mouseleave', handleItemMouseLeave);
-  });
-}
-
-/* =========================
-   CARROSSEL
-========================= */
+document.addEventListener("DOMContentLoaded", addEventListenersToCards, false);
 
 function selectCarouselItem(selectedButtonElement) {
     const selectedItem = selectedButtonElement.id;
@@ -64,11 +37,21 @@ function selectCarouselItem(selectedButtonElement) {
     selectedButtonElement.classList.add('s-controller__button--active');
 }
 
-/* =========================
-   INIT
-========================= */
+function handleMouseEnter() {
+  document.body.className = `${this.id}-hovered`;
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-  addEventListenersToCards();
-  addEventListenersToItems();
-});
+function handleMouseLeave() {
+  document.body.className = '';
+}
+
+function addEventListenersToItems() {
+  const items = document.querySelectorAll('.item');
+
+  items.forEach(item => {
+    item.addEventListener('mouseenter', handleMouseEnter);
+    item.addEventListener('mouseleave', handleMouseLeave);
+  });
+}
+
+addEventListenersToItems();
