@@ -1,11 +1,15 @@
 console.log("Script carregado");
 
-function handleMouseEnter() {
+/* =========================
+   HOME - CARDS
+========================= */
+
+function handleCardMouseEnter() {
     this.classList.add('s-card--hovered');
     document.body.id = `${this.id}-hovered`;
 }
 
-function handleMouseLeave() {
+function handleCardMouseLeave() {
     this.classList.remove('s-card--hovered');
     document.body.id = '';
 }
@@ -15,12 +19,35 @@ function addEventListenersToCards() {
 
     for (let i = 0; i < cardElements.length; i++) {
         const card = cardElements[i];
-        card.addEventListener('mouseenter', handleMouseEnter);
-        card.addEventListener('mouseleave', handleMouseLeave);
+        card.addEventListener('mouseenter', handleCardMouseEnter);
+        card.addEventListener('mouseleave', handleCardMouseLeave);
     }
 }
 
-document.addEventListener("DOMContentLoaded", addEventListenersToCards, false);
+/* =========================
+   LINHA DO TEMPO
+========================= */
+
+function handleItemMouseEnter() {
+  document.body.className = `${this.id}-hovered`;
+}
+
+function handleItemMouseLeave() {
+  document.body.className = '';
+}
+
+function addEventListenersToItems() {
+  const items = document.querySelectorAll('.item');
+
+  items.forEach(item => {
+    item.addEventListener('mouseenter', handleItemMouseEnter);
+    item.addEventListener('mouseleave', handleItemMouseLeave);
+  });
+}
+
+/* =========================
+   CARROSSEL
+========================= */
 
 function selectCarouselItem(selectedButtonElement) {
     const selectedItem = selectedButtonElement.id;
@@ -37,21 +64,11 @@ function selectCarouselItem(selectedButtonElement) {
     selectedButtonElement.classList.add('s-controller__button--active');
 }
 
-function handleMouseEnter() {
-  document.body.className = `${this.id}-hovered`;
-}
+/* =========================
+   INIT
+========================= */
 
-function handleMouseLeave() {
-  document.body.className = '';
-}
-
-function addEventListenersToItems() {
-  const items = document.querySelectorAll('.item');
-
-  items.forEach(item => {
-    item.addEventListener('mouseenter', handleMouseEnter);
-    item.addEventListener('mouseleave', handleMouseLeave);
-  });
-}
-
-addEventListenersToItems();
+document.addEventListener("DOMContentLoaded", () => {
+  addEventListenersToCards();
+  addEventListenersToItems();
+});
