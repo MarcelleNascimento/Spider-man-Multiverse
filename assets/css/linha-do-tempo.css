@@ -1,0 +1,192 @@
+@import url('reset.css');
+@import url('global.css');
+@import url('components/nav-menu.css');
+
+body{
+    background-color: var(--primary-color);
+    transition: background-color 0.6s ease;
+}
+
+body::before {
+    content: "";
+    background-image: url('../images/spider-man-background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.2;
+    transition: opacity 0.6s ease, background-image 0.6s ease;
+}
+.s-content-linha-do-tempo {
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* UL principal */
+.timeline {
+  position: relative;
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Linha branca atrás dos pontos */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top:  calc(250px + 14px + 10px);
+  height: 4px;
+  background: #fff;
+  z-index: 0;
+}
+
+/* Cada coluna da timeline */
+.item {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Card da imagem */
+.card {
+  position: relative;
+  width: 200px;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.2);
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  object-position: center;
+  display: block;
+}
+
+/* Overlay gradiente que sobe */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55),
+    transparent 60%
+  );
+
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.item:hover .card::before {
+  transform: translateY(0);
+}
+
+.item:hover .card {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.35);
+}
+
+/* Ponto da linha do tempo */
+.ponto {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fff;
+  position: relative;
+  z-index: 1; /* fica acima da linha */
+}
+
+/* Ano */
+.ano {
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.card::after {
+  content: attr(data-title);
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+
+  transform: translate(-50%, 20px);
+  opacity: 0;
+
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  width: 90%;
+
+  z-index: 3; /* acima do overlay */
+  pointer-events: none;
+
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.item:hover .card::after {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+/* Tobey */
+body.sm-2002-hovered::before {
+  background-image: url('../images/spiderman-tobey/movie-01/background.png');
+}
+
+body.sm-2004-hovered::before {
+  background-image: url('../images/spiderman-tobey/movie-02/background.png');
+}
+
+body.sm-2007-hovered::before {
+  background-image: url('../images/spiderman-tobey/movie-03/background.png');
+}
+
+/* Andrew */
+body.sm-2012-hovered::before {
+  background-image: url('../images/spiderman-andrew/movie-01/background.png');
+}
+
+body.sm-2014-hovered::before {
+  background-image: url('../images/spiderman-andrew/movie-02/background.jpg');
+}
+
+/* Tom */
+body.sm-2017-hovered::before {
+  background-image: url('../images/spiderman-tom/movie-01/background.png');
+}
+
+body.sm-2019-hovered::before {
+  background-image: url('../images/spiderman-tom/movie-02/background.png');
+}
+
+body.sm-2021-hovered::before {
+  background-image: url('../images/spiderman-tom/movie-03/background.png');
+}
+
+body[class*="-hovered"] {
+  background-color: #000;
+}
