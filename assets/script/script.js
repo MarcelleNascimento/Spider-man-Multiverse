@@ -4,29 +4,24 @@ console.log("Script carregado");
    HOME - CARDS
 ========================= */
 
-console.log("Script carregado");
+function handleCardMouseEnter() {
+    this.classList.add('s-card--hovered');
+    document.body.id = ${this.id}-hovered;
+}
+
+function handleCardMouseLeave() {
+    this.classList.remove('s-card--hovered');
+    document.body.id = '';
+}
 
 function addEventListenersToCards() {
-  const cards = document.querySelectorAll(".s-card");
-  console.log("Cards encontrados:", cards.length);
+    const cardElements = document.getElementsByClassName('s-card');
 
-  cards.forEach((card) => {
-    card.addEventListener("mouseenter", () => {
-      console.log("hover:", card.id);
-      // remove qualquer hovered antigo
-      document.body.classList.remove(
-        "spider-man-01-hovered",
-        "spider-man-02-hovered",
-        "spider-man-03-hovered"
-      );
-      // adiciona o hovered atual
-      document.body.classList.add(`${card.id}-hovered`);
-    });
-
-    card.addEventListener("mouseleave", () => {
-      document.body.classList.remove(`${card.id}-hovered`);
-    });
-  });
+    for (let i = 0; i < cardElements.length; i++) {
+        const card = cardElements[i];
+        card.addEventListener('mouseenter', handleCardMouseEnter);
+        card.addEventListener('mouseleave', handleCardMouseLeave);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
