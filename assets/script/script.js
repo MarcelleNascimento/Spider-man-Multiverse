@@ -1,3 +1,5 @@
+console.log("Script carregado");
+
 function handleMouseEnter() {
     this.classList.add('s-card--hovered');
     document.body.id = `${this.id}-hovered`;
