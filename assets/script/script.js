@@ -6,7 +6,7 @@ console.log("Script carregado");
 
 function handleCardMouseEnter() {
     this.classList.add('s-card--hovered');
-    document.body.id = ${this.id}-hovered;
+    document.body.id = `${this.id}-hovered`;
 }
 
 function handleCardMouseLeave() {
@@ -23,10 +23,6 @@ function addEventListenersToCards() {
         card.addEventListener('mouseleave', handleCardMouseLeave);
     }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  addEventListenersToCards();
-});
 
 /* =========================
    LINHA DO TEMPO
